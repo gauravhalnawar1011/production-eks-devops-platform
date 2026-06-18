@@ -1,13 +1,29 @@
-output "network_summary" {
+output "vpc_id" {
 
-  value = {
+  value = module.network.vpc_id
+}
 
-    vpc_id = module.network.vpc_id
+output "public_subnet_ids" {
 
-    public_subnets = module.network.public_subnet_ids
+  value = module.network.public_subnet_ids
+}
 
-    private_subnets = module.network.private_subnet_ids
+output "private_subnet_ids" {
 
-    nat_gateways = module.network.nat_gateway_ids
-  }
+  value = module.network.private_subnet_ids
+}
+
+output "nat_gateway_ids" {
+
+  value = module.network.nat_gateway_ids
+}
+
+output "eks_cluster_sg_id" {
+
+  value = module.network.eks_cluster_sg_id
+}
+
+output "eks_node_sg_id" {
+
+  value = module.network.eks_node_sg_id
 }

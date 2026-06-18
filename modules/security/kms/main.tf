@@ -41,6 +41,10 @@ data "aws_caller_identity" "current" {}
 
 data "aws_iam_policy_document" "kms" {
 
+  #################################################
+  # ACCOUNT ROOT
+  #################################################
+
   statement {
 
     sid = "EnableRootPermissions"
@@ -58,6 +62,99 @@ data "aws_iam_policy_document" "kms" {
 
     actions = [
       "kms:*"
+    ]
+
+    resources = ["*"]
+  }
+
+  #################################################
+  # CLOUDWATCH LOGS
+  #################################################
+
+  statement {
+
+    sid = "AllowCloudWatchLogs"
+
+    effect = "Allow"
+
+    principals {
+
+      type = "Service"
+
+      identifiers = [
+        "logs.ap-south-1.amazonaws.com"
+      ]
+    }
+
+    actions = [
+
+      "kms:Encrypt",
+      "kms:Decrypt",
+      "kms:ReEncrypt*",
+      "kms:GenerateDataKey*",
+      "kms:DescribeKey"
+    ]
+
+    resources = ["*"]
+  }
+
+  #################################################
+  # EKS
+  #################################################
+
+  statement {
+
+    sid = "AllowEKS"
+
+    effect = "Allow"
+
+    principals {
+
+      type = "Service"
+
+      identifiers = [
+        "eks.amazonaws.com"
+      ]
+    }
+
+    actions = [
+
+      "kms:Encrypt",
+      "kms:Decrypt",
+      "kms:ReEncrypt*",
+      "kms:GenerateDataKey*",
+      "kms:DescribeKey"
+    ]
+
+    resources = ["*"]
+  }
+
+  #################################################
+  # EC2 / EBS
+  #################################################
+
+  statement {
+
+    sid = "AllowEC2"
+
+    effect = "Allow"
+
+    principals {
+
+      type = "Service"
+
+      identifiers = [
+        "ec2.amazonaws.com"
+      ]
+    }
+
+    actions = [
+
+      "kms:Encrypt",
+      "kms:Decrypt",
+      "kms:ReEncrypt*",
+      "kms:GenerateDataKey*",
+      "kms:DescribeKey"
     ]
 
     resources = ["*"]
