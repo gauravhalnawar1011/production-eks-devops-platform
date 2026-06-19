@@ -16,8 +16,6 @@ resource "aws_launch_template" "eks_nodes" {
 
       encrypted = true
 
-      kms_key_id = var.kms_key_arn
-
       delete_on_termination = true
     }
   }

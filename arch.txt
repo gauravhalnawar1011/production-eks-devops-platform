@@ -1,0 +1,45 @@
+security/kms
+    ↓
+network
+    ↓
+container/ecr
+    ↓
+orchestration/eks
+    ↓
+orchestration/oidc
+    ↓
+orchestration/eks-addons
+    ↓
+aws-load-balancer-controller
+    ↓
+ebs-csi-driver
+    ↓
+external-dns
+    ↓
+argocd
+
+
+
+
+
+1. AWS Load Balancer Controller
+2. Route53 Hosted Zone
+3. ACM Wildcard Certificate
+4. ExternalDNS
+5. ArgoCD
+6. Prometheus + Grafana
+7. Demo Applications
+8. Karpenter
+9. Cert Manager
+10. External Secrets Operator
+
+
+
+
+/tmp/production-eks-devops-platform/environments/orchestration/alb-controller/dev
+/tmp/production-eks-devops-platform/environments/orchestration/ebs-csi-driver/dev
+/tmp/production-eks-devops-platform/environments/orchestration/oidc/dev
+tmp/production-eks-devops-platform/environments/orchestration/dev
+tmp/production-eks-devops-platform/environments/container/dev
+
+tmp/production-eks-devops-platform/environments/network/dev

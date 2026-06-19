@@ -24,12 +24,12 @@ cluster_version = "1.35"
 
 instance_types = [
 
-  "t3.micro"
+  "c7i-flex.large"
 ]
 
-desired_size = 2
+desired_size = 3
 
-min_size = 2
+min_size = 3
 
 max_size = 4
 
@@ -46,3 +46,27 @@ ami_type = "BOTTLEROCKET_x86_64"
 #################################################
 
 cloudwatch_log_retention_days = 30
+
+
+addons = [
+
+  {
+    name    = "vpc-cni"
+    version = "v1.20.0-eksbuild.1"
+  },
+
+  {
+    name    = "coredns"
+    version = "v1.12.2-eksbuild.4"
+  },
+
+  {
+    name    = "kube-proxy"
+    version = "v1.33.0-eksbuild.2"
+  },
+
+  {
+    name    = "eks-pod-identity-agent"
+    version = "v1.3.8-eksbuild.2"
+  }
+]

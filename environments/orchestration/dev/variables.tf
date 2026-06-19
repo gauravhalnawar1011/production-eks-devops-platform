@@ -66,3 +66,14 @@ variable "managed_by" {
 
   default = "Terraform"
 }
+
+variable "addons" {
+
+  type = list(object({
+
+    name    = string
+
+    version = string
+  }))
+}
+
