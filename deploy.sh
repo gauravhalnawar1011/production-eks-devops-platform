@@ -2,138 +2,136 @@
 
 set -e
 
-PROJECT_NAME="production-eks-devops-platform"
+#################################################
 
-mkdir -p ${PROJECT_NAME}
+# DEPLOYMENT ORDER
 
-cd ${PROJECT_NAME}
+#################################################
 
-# =========================
+NETWORK="network/dev"
+KMS="security/kms/dev"
+ECR="container/dev"
+EKS="orchestration/dev"
+OIDC="orchestration/oidc/dev"
+EBS_CSI="orchestration/ebs-csi-driver/dev"
+ALB_CONTROLLER="orchestration/alb-controller/dev"
 
-# ENVIRONMENTS
+#################################################
 
-# =========================
+# FUNCTION
 
-mkdir -p environments/network/{dev,qa,uat,prod}
-mkdir -p environments/container/{dev,qa,uat,prod}
-mkdir -p environments/orchestration/{dev,qa,uat,prod}
+#################################################
 
-# =========================
+run_module() {
 
-# NETWORK MODULES
 
-# =========================
+local action=$1
+local module_path=$2
 
-mkdir -p modules/network/vpc
-mkdir -p modules/network/subnets
-mkdir -p modules/network/internet-gateway
-mkdir -p modules/network/nat-gateway
-mkdir -p modules/network/route-tables
-mkdir -p modules/network/security-groups
+echo ""
+echo "=================================================="
+echo "$action : $module_path"
+echo "=================================================="
+echo ""
 
-# =========================
+cd "$module_path"
 
-# CONTAINER MODULES
+chmod +x deploy.sh
 
-# =========================
+./deploy.sh "$action"
 
-mkdir -p modules/container/ecr
+cd - >/dev/null
 
-# =========================
 
-# ORCHESTRATION MODULES
+}
 
-# =========================
+#################################################
 
-mkdir -p modules/orchestration/eks-cluster
-mkdir -p modules/orchestration/eks-nodegroup
-mkdir -p modules/orchestration/oidc-provider
-mkdir -p modules/orchestration/irsa
-mkdir -p modules/orchestration/aws-load-balancer-controller
-mkdir -p modules/orchestration/metrics-server
-mkdir -p modules/orchestration/argocd
+# APPLY
 
-# =========================
+#################################################
 
-# NETWORK SERVICES
+apply() {
 
-# =========================
 
-mkdir -p modules/networking-services/acm
-mkdir -p modules/networking-services/route53
-mkdir -p modules/networking-services/external-dns
+run_module apply "$NETWORK"
 
-# =========================
+run_module apply "$KMS"
 
-# SECURITY
+run_module apply "$ECR"
 
-# =========================
+run_module apply "$EKS"
 
-mkdir -p modules/security/iam
-mkdir -p modules/security/kms
-mkdir -p modules/security/secrets-manager
+run_module apply "$OIDC"
 
-# =========================
+run_module apply "$EBS_CSI"
 
-# OBSERVABILITY
+run_module apply "$ALB_CONTROLLER"
 
-# =========================
+echo ""
+echo "======================================"
+echo "Platform Deployment Completed"
+echo "======================================"
 
-mkdir -p modules/observability/prometheus
-mkdir -p modules/observability/grafana
-mkdir -p modules/observability/alertmanager
-mkdir -p modules/observability/loki
 
-# =========================
+}
 
-# GITOPS
+#################################################
 
-# =========================
+# DESTROY
 
-mkdir -p gitops/apps/netflix-clone
-mkdir -p gitops/apps/prometheus
-mkdir -p gitops/apps/grafana
-mkdir -p gitops/apps/alertmanager
-mkdir -p gitops/apps/loki
-mkdir -p gitops/apps/argocd
+#################################################
 
-mkdir -p gitops/bootstrap
+destroy() {
 
-# =========================
 
-# DOCUMENTATION
+run_module destroy "$ALB_CONTROLLER"
 
-# =========================
+run_module destroy "$EBS_CSI"
 
-mkdir -p docs/architecture
-mkdir -p docs/screenshots
-mkdir -p docs/diagrams
+run_module destroy "$OIDC"
 
-# =========================
+run_module destroy "$EKS"
 
-# CI/CD
+run_module destroy "$ECR"
 
-# =========================
+run_module destroy "$KMS"
 
-mkdir -p .github/workflows
+run_module destroy "$NETWORK"
 
-# =========================
+echo ""
+echo "======================================"
+echo "Platform Destroy Completed"
+echo "======================================"
 
-# COMMON TERRAFORM FILES
 
-# =========================
+}
 
-for env in environments/network/* environments/container/* environments/orchestration/*
-do
-touch "$env/main.tf"
-touch "$env/variables.tf"
-touch "$env/outputs.tf"
-touch "$env/provider.tf"
-touch "$env/backend.tf"
-touch "$env/versions.tf"
-touch "$env/terraform.tfvars"
-done
+#################################################
 
-echo "Platform structure created successfully."
+# MAIN
 
-tree .
+#################################################
+
+case "$1" in
+
+
+apply)
+    apply
+    ;;
+
+destroy)
+    destroy
+    ;;
+
+*)
+    echo ""
+    echo "Usage:"
+    echo "./deploy.sh apply"
+    echo "./deploy.sh destroy"
+    echo ""
+    exit 1
+    ;;
+
+
+esac

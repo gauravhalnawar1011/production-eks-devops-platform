@@ -36,10 +36,9 @@ argocd
 
 
 
-/tmp/production-eks-devops-platform/environments/orchestration/alb-controller/dev
-/tmp/production-eks-devops-platform/environments/orchestration/ebs-csi-driver/dev
-/tmp/production-eks-devops-platform/environments/orchestration/oidc/dev
-tmp/production-eks-devops-platform/environments/orchestration/dev
-tmp/production-eks-devops-platform/environments/container/dev
-
-tmp/production-eks-devops-platform/environments/network/dev
+environments/orchestration/alb-controller/dev
+environments/orchestration/ebs-csi-driver/dev
+environments/orchestration/oidc/dev
+environments/orchestration/dev
+environments/container/dev
+environments/network/dev

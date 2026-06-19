@@ -90,4 +90,22 @@ module "security_groups" {
   admin_access_cidr = var.admin_access_cidr
 
   common_tags = local.common_tags
+  vpc_cidr = var.vpc_cidr
+}
+
+module "endpoints" {
+
+  source = "./endpoints"
+
+  vpc_id = module.vpc.vpc_id
+
+  private_subnet_ids = module.subnets.private_subnet_ids
+
+  private_route_table_ids = module.route_tables.private_route_table_ids
+
+  endpoint_security_group_id = module.security_groups.vpce_sg_id
+
+  aws_region = var.aws_region
+
+  common_tags = local.common_tags
 }

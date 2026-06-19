@@ -16,7 +16,7 @@ locals {
 
 module "platform_kms" {
 
-  source = "../../../modules/security/kms"
+  source = "../../../../modules/security/kms"
 
   environment = var.environment
 

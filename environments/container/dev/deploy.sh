@@ -2,78 +2,76 @@
 
 set -e
 
-ACTION=$1
+#################################################
+# APPLY
+#################################################
 
-KMS_DIR="../../security/kms"
-ECR_DIR="./"
+apply() {
 
-if [[ "$ACTION" != "apply" && "$ACTION" != "destroy" ]]; then
-echo "Usage: ./platform.sh [apply|destroy]"
-exit 1
-fi
+  echo "=================================="
+  echo "Terraform Init"
+  echo "=================================="
 
-if [[ "$ACTION" == "apply" ]]; then
+  terraform init
 
+  echo "=================================="
+  echo "Terraform Validate"
+  echo "=================================="
 
-echo "====================================="
-echo "Deploying Security (KMS)"
-echo "====================================="
+  terraform validate
 
-(
-    cd "$KMS_DIR"
+  echo "=================================="
+  echo "Terraform Plan"
+  echo "=================================="
 
-    terraform init
-    terraform validate
-    terraform plan -var-file=terraform.tfvars
-    terraform apply -var-file=terraform.tfvars --auto-approve
-)
+  terraform plan \
+    -var-file=terraform.tfvars
 
-echo "====================================="
-echo "Deploying ECR"
-echo "====================================="
+  echo "=================================="
+  echo "Terraform Apply"
+  echo "=================================="
 
-(
-    cd "$ECR_DIR"
+  terraform apply \
+    -var-file=terraform.tfvars \
+    --auto-approve
+}
 
-    terraform init
-    terraform validate
-    terraform plan -var-file=terraform.tfvars
-    terraform apply -var-file=terraform.tfvars --auto-approve
-)
+#################################################
+# DESTROY
+#################################################
 
-echo "====================================="
-echo "Deployment Completed"
-echo "====================================="
+destroy() {
 
+  echo "=================================="
+  echo "Terraform Destroy"
+  echo "=================================="
 
-fi
+  terraform destroy \
+    -var-file=terraform.tfvars \
+    --auto-approve
+}
 
-if [[ "$ACTION" == "destroy" ]]; then
+#################################################
+# MAIN
+#################################################
 
+case "$1" in
 
-echo "====================================="
-echo "Destroying ECR"
-echo "====================================="
+  apply)
+    apply
+    ;;
 
-(
-    cd "$ECR_DIR"
+  destroy)
+    destroy
+    ;;
 
-    terraform destroy -var-file=terraform.tfvars --auto-approve
-)
+  *)
+    echo ""
+    echo "Usage:"
+    echo "./deploy.sh apply"
+    echo "./deploy.sh destroy"
+    echo ""
+    exit 1
+    ;;
 
-echo "====================================="
-echo "Destroying Security (KMS)"
-echo "====================================="
-
-(
-    cd "$KMS_DIR"
-
-    terraform destroy -var-file=terraform.tfvars --auto-approve
-)
-
-echo "====================================="
-echo "Destroy Completed"
-echo "====================================="
-
-
-fi
+esac

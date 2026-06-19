@@ -75,3 +75,6 @@ variable "admin_access_cidr" {
   default = "0.0.0.0/0"
 }
 
+variable "aws_region" {
+  default = "ap-south-1"
+}
