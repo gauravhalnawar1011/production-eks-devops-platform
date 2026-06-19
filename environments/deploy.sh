@@ -11,7 +11,8 @@ set -e
 NETWORK="network/dev"
 KMS="security/kms/dev"
 ECR="container/dev"
-
+DNS="global/acm"
+ACM="global/dns"
 EKS="orchestration/dev"
 OIDC="orchestration/oidc/dev"
 EBS_CSI="orchestration/ebs-csi-driver/dev"
@@ -53,6 +54,10 @@ cd - >/dev/null
 #################################################
 
 apply() {
+
+run_module apply "$DNS"
+
+run_module apply "$ACM"
 
 
 run_module apply "$NETWORK"
@@ -99,6 +104,12 @@ run_module destroy "$ECR"
 run_module destroy "$KMS"
 
 run_module destroy "$NETWORK"
+
+run_module destroy "$DNS"
+
+run_module destroy "$ACM"
+
+
 
 echo ""
 echo "======================================"
