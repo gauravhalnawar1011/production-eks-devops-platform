@@ -14,6 +14,8 @@ resource "aws_eks_node_group" "main" {
 
   capacity_type = "ON_DEMAND"
 
+
+
   launch_template {
 
     id = aws_launch_template.eks_nodes.id

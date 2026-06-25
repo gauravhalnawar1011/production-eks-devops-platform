@@ -4,6 +4,14 @@ resource "aws_launch_template" "eks_nodes" {
 
   update_default_version = true
 
+network_interfaces {
+
+  security_groups = [
+    aws_eks_cluster.main.vpc_config[0].cluster_security_group_id,
+    aws_security_group.eks_node.id
+  ]
+}
+
   block_device_mappings {
 
     device_name = "/dev/xvda"

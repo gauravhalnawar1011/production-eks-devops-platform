@@ -27,3 +27,11 @@ output "cluster_role_arn" {
 
   value = aws_iam_role.eks_cluster.arn
 }
+
+output "node_security_group_id" {
+
+  description = "EKS Worker Node Security Group"
+
+  value = aws_security_group.eks_node.id
+
+}

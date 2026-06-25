@@ -11,8 +11,8 @@ set -e
 NETWORK="network/dev"
 KMS="security/kms/dev"
 ECR="container/dev"
-DNS="global/acm"
-ACM="global/dns"
+#DNS="global/dns" # dont destroy it otherwise you need to update the domain in my case it godaddy 
+ACM="global/acm"
 EKS="orchestration/dev"
 OIDC="orchestration/oidc/dev"
 EBS_CSI="orchestration/ebs-csi-driver/dev"
@@ -55,7 +55,7 @@ cd - >/dev/null
 
 apply() {
 
-run_module apply "$DNS"
+# run_module apply "$DNS"
 
 run_module apply "$ACM"
 
@@ -105,7 +105,7 @@ run_module destroy "$KMS"
 
 run_module destroy "$NETWORK"
 
-run_module destroy "$DNS"
+# run_module destroy "$DNS"
 
 run_module destroy "$ACM"
 
