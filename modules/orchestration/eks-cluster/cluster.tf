@@ -41,6 +41,7 @@ resource "aws_eks_cluster" "main" {
     ]
 
     subnet_ids = var.private_subnet_ids
+
   }
 
   depends_on = [

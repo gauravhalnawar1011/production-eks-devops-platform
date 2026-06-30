@@ -33,6 +33,14 @@ resource "aws_iam_role_policy_attachment" "worker_node" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy"
 }
 
+resource "aws_iam_role_policy_attachment" "ssm_policy" {
+
+  role = aws_iam_role.eks_node.name
+
+  policy_arn = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
+}
+
+
 resource "aws_iam_role_policy_attachment" "cni" {
 
   role = aws_iam_role.eks_node.name

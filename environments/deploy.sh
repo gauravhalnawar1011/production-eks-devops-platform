@@ -17,6 +17,7 @@ EKS="orchestration/dev"
 OIDC="orchestration/oidc/dev"
 EBS_CSI="orchestration/ebs-csi-driver/dev"
 ALB_CONTROLLER="orchestration/alb-controller/dev"
+RDS="database/rds/dev"
 
 #################################################
 
@@ -74,6 +75,8 @@ run_module apply "$EBS_CSI"
 
 run_module apply "$ALB_CONTROLLER"
 
+run_module apply "$RDS"
+
 echo ""
 echo "======================================"
 echo "Platform Deployment Completed"
@@ -90,7 +93,7 @@ echo "======================================"
 
 destroy() {
 
-
+run_module destroy "$RDS"
 run_module destroy "$ALB_CONTROLLER"
 
 run_module destroy "$EBS_CSI"
