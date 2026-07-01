@@ -13,11 +13,14 @@ KMS="security/kms/dev"
 ECR="container/dev"
 #DNS="global/dns" # dont destroy it otherwise you need to update the domain in my case it godaddy 
 ACM="global/acm"
+ACM_GLOBAL="global/acm-global"
+WEB_DEV="frontend/dev"
 EKS="orchestration/dev"
 OIDC="orchestration/oidc/dev"
 EBS_CSI="orchestration/ebs-csi-driver/dev"
 ALB_CONTROLLER="orchestration/alb-controller/dev"
 RDS="database/rds/dev"
+
 
 #################################################
 
@@ -60,10 +63,13 @@ apply() {
 
 run_module apply "$ACM"
 
+run_module apply "$ACM_GLOBAL"
 
 run_module apply "$NETWORK"
 
 run_module apply "$KMS"
+
+run_module  apply "$WEB_DEV"
 
 run_module apply "$ECR"
 
@@ -108,10 +114,12 @@ run_module destroy "$KMS"
 
 run_module destroy "$NETWORK"
 
+run_module destroy "$WEB_DEV"
+
 # run_module destroy "$DNS"
 
 run_module destroy "$ACM"
-
+run_module destroy "$ACM_GLOBAL"
 
 
 echo ""
