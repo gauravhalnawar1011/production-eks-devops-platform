@@ -1,15 +1,23 @@
-name: Dev - GitHub OIDC
+name: Space9 | Dev | Frontend Infrastructure (S3,Cloudfront)
 
 on:
   workflow_dispatch:
+    inputs:
+      action:
+        description: Terraform Action
+        required: true
+        default: apply
+        type: choice
+        options:
+          - apply
+          - destroy
 
 permissions:
   id-token: write
   contents: read
 
 jobs:
-
-  deploy:
+  terraform:
 
     runs-on: ubuntu-latest
 
@@ -18,66 +26,56 @@ jobs:
 
     defaults:
       run:
-        working-directory: environments/security/github-oidc/dev
-
+        working-directory: environments/frontend/dev
     steps:
 
       ############################################################
-      # Checkout Repository
+      # Checkout
       ############################################################
 
-      - name: Checkout Repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
       ############################################################
-      # Configure AWS Credentials
+      # Configure AWS
       ############################################################
 
-      - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v5
-
+      - uses: aws-actions/configure-aws-credentials@v5
         with:
           role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
           aws-region: ${{ vars.AWS_REGION }}
 
       ############################################################
-      # Setup Terraform
+      # Terraform
       ############################################################
 
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v3
+      - uses: hashicorp/setup-terraform@v3
+
+      - run: terraform init
+
+      - run: terraform fmt -check -recursive
+
+      - run: terraform validate
 
       ############################################################
-      # Terraform Init
-      ############################################################
-
-      - name: Terraform Init
-        run: terraform init
-
-      ############################################################
-      # Terraform Format
-      ############################################################
-
-      - name: Terraform Format
-        run: terraform fmt -check -recursive
-
-      ############################################################
-      # Terraform Validate
-      ############################################################
-
-      - name: Terraform Validate
-        run: terraform validate
-
-      ############################################################
-      # Terraform Plan
+      # PLAN
       ############################################################
 
       - name: Terraform Plan
+        if: github.event.inputs.action == 'apply'
         run: terraform plan -out=tfplan
 
       ############################################################
-      # Terraform Apply
+      # APPLY
       ############################################################
 
       - name: Terraform Apply
+        if: github.event.inputs.action == 'apply'
         run: terraform apply -auto-approve tfplan
+
+      ############################################################
+      # DESTROY
+      ############################################################
+
+      - name: Terraform Destroy
+        if: github.event.inputs.action == 'destroy'
+        run: terraform destroy -auto-approve

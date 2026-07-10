@@ -1,4 +1,4 @@
-name: space9 Dev Frontend Infrastructure acm shared us-east-1
+name: Space9 dev Frontend Infrastructure acm shared us-east-1
 
 on:
   workflow_dispatch:
