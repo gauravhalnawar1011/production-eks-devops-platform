@@ -110,3 +110,14 @@ variable "frontend_branch" {
 variable "backend_branch" {
   
 }
+#############################################################
+# GITHUB ENVIRONMENT
+#############################################################
+
+variable "github_environment" {
+
+  description = "GitHub Environment Name"
+
+  type = string
+
+}

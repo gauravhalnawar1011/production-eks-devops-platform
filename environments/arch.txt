@@ -1,0 +1,11 @@
+frontend tech stack dependency graph
+first create the 
+/home/gaurav-h/exlearn/final-project-exleran/production-eks-devops-platform/environments/security/github-oidc/dev
+
+then create ssl tls certs for the cdn to server the traffic 
+/home/gaurav-h/exlearn/final-project-exleran/production-eks-devops-platform/environments/global/acm-global
+
+
+then create the 
+/home/gaurav-h/exlearn/final-project-exleran/production-eks-devops-platform/environments/frontend/dev
+

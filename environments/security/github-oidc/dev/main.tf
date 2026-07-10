@@ -53,6 +53,7 @@ module "terraform_role" {
   frontend_branch = var.frontend_branch
 
 github_branch = var.github_branch
+github_environment = var.github_environment
 
 }
 
@@ -82,6 +83,8 @@ module "frontend_role" {
 
   github_branch = var.github_branch
 
+  github_environment = var.github_environment
+
 }
 
 #############################################################
@@ -110,4 +113,6 @@ module "backend_role" {
   frontend_branch = var.frontend_branch
 
 github_branch = var.github_branch
+
+github_environment = var.github_environment
 }

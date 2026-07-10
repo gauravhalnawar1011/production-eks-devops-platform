@@ -15,6 +15,7 @@ resource "aws_iam_role" "this" {
       github_owner      = var.github_owner
       github_repository = var.github_repository
       github_branch     = var.github_branch
+      github_environment = var.github_environment
     }
   )
 
