@@ -1,0 +1,81 @@
+name: Space9 | VPC | ap-south-1 
+
+on:
+  workflow_dispatch:
+    inputs:
+      action:
+        description: Terraform Action
+        required: true
+        default: apply
+        type: choice
+        options:
+          - apply
+          - destroy
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  terraform:
+
+    runs-on: ubuntu-latest
+
+    environment:
+      name: Development
+
+    defaults:
+      run:
+        working-directory: environments/network/dev
+    steps:
+
+      ############################################################
+      # Checkout
+      ############################################################
+
+      - uses: actions/checkout@v4
+
+      ############################################################
+      # Configure AWS
+      ############################################################
+
+      - uses: aws-actions/configure-aws-credentials@v5
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+          aws-region: ${{ vars.AWS_REGION }}
+
+      ############################################################
+      # Terraform
+      ############################################################
+
+      - uses: hashicorp/setup-terraform@v3
+
+      - run: terraform init
+
+      - run: terraform fmt -check -recursive
+
+      - run: terraform validate
+
+      ############################################################
+      # PLAN
+      ############################################################
+
+      - name: Terraform Plan
+        if: github.event.inputs.action == 'apply'
+        run: terraform plan -out=tfplan
+
+      ############################################################
+      # APPLY
+      ############################################################
+
+      - name: Terraform Apply
+        if: github.event.inputs.action == 'apply'
+        run: terraform apply -auto-approve tfplan
+
+      ############################################################
+      # DESTROY
+      ############################################################
+
+      - name: Terraform Destroy
+        if: github.event.inputs.action == 'destroy'
+        run: terraform destroy -auto-approve
