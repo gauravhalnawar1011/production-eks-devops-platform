@@ -30,8 +30,7 @@ jobs:
     defaults:
       run:
         shell: bash
-        working-directory: environments/network/security/kms/dev
-
+        working-directory: environments/security/kms/dev
     steps:
 
       ############################################################
