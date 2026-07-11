@@ -1,4 +1,4 @@
-name: Space9 | VPC | ap-south-1
+name: Space9 | Amazon VPC
 
 on:
   workflow_dispatch:
@@ -20,7 +20,7 @@ jobs:
 
   terraform:
 
-    name: Deploy VPC
+    name: Deploy Amazon VPC
 
     runs-on: ubuntu-latest
 
@@ -67,7 +67,7 @@ jobs:
         run: terraform init
 
       ############################################################
-      # Terraform Format Check
+      # Terraform Format
       ############################################################
 
       - name: Terraform Format
