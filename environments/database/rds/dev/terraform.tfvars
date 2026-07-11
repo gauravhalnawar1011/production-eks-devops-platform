@@ -56,8 +56,8 @@ backup_retention_period = 1
 
 monitoring_interval = 0
 
-performance_insights_enabled = false
-monitoring_role_name = false
+performance_insights_enabled     = false
+monitoring_role_name             = false
 cloudwatch_log_retention_in_days = 7
 
 create_cloudwatch_log_group = true
@@ -74,7 +74,7 @@ skip_final_snapshot = true
 #############################################################
 
 tags = {
-  Owner       = "DevOps Team"
-  CostCenter  = "Training"
-  Terraform   = "true"
+  Owner      = "DevOps Team"
+  CostCenter = "Training"
+  Terraform  = "true"
 }

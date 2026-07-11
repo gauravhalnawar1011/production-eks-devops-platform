@@ -18,7 +18,7 @@
 
 resource "aws_security_group" "eks_node" {
 
-  name        = "${var.project_name}-${var.environment}-eks-node-sg"
+  name = "${var.project_name}-${var.environment}-eks-node-sg"
 
   description = "Additional Security Group for EKS Worker Nodes"
 

@@ -4,9 +4,9 @@ locals {
 
     Environment = var.environment
 
-    Project     = var.project_name
+    Project = var.project_name
 
-    ManagedBy   = var.managed_by
+    ManagedBy = var.managed_by
   }
 }
 

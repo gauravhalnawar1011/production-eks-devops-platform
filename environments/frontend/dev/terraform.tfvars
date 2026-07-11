@@ -1,10 +1,10 @@
-aws_region      = "ap-south-1"
+aws_region = "ap-south-1"
 
-environment     = "dev"
+environment = "dev"
 
-project_name    = "production-eks-devops-platform"
+project_name = "production-eks-devops-platform"
 
-bucket_name     = "production-dev-frontend"
+bucket_name = "production-dev-frontend"
 
 frontend_domain = "dev.space9.in"
 

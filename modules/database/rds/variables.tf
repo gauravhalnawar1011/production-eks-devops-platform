@@ -275,13 +275,13 @@ variable "performance_insights_retention_period" {
 
 
 variable "create_cloudwatch_log_group" {
-  
+
 }
 
 variable "cloudwatch_log_retention_in_days" {
-  
+
 }
 
 variable "monitoring_role_name" {
-  
+
 }

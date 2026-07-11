@@ -44,20 +44,20 @@ module "cloudfront" {
 
 resource "aws_route53_record" "frontend" {
 
-    zone_id = data.terraform_remote_state.dns.outputs.hosted_zone_id
+  zone_id = data.terraform_remote_state.dns.outputs.hosted_zone_id
 
-    name = var.frontend_domain
+  name = var.frontend_domain
 
-    type = "A"
+  type = "A"
 
-    alias {
+  alias {
 
-        name = module.cloudfront.distribution_domain_name
+    name = module.cloudfront.distribution_domain_name
 
-        zone_id = module.cloudfront.hosted_zone_id
+    zone_id = module.cloudfront.hosted_zone_id
 
-        evaluate_target_health = false
+    evaluate_target_health = false
 
-    }
+  }
 
 }

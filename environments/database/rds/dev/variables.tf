@@ -1,5 +1,5 @@
 variable "aws_region" {
-  type = string
+  type    = string
   default = "ap-south-1"
 }
 #############################################################
@@ -121,7 +121,7 @@ variable "monitoring_role_name" {
 }
 
 variable "cloudwatch_log_retention_in_days" {
-  
+
 }
 
 variable "create_cloudwatch_log_group" {

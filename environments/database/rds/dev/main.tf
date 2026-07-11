@@ -17,18 +17,18 @@ module "rds" {
   # Network
   ###########################################################
 
-###########################################################
-# Network
-###########################################################
+  ###########################################################
+  # Network
+  ###########################################################
 
-vpc_id = data.terraform_remote_state.network.outputs.vpc_id
+  vpc_id = data.terraform_remote_state.network.outputs.vpc_id
 
-private_subnet_ids = data.terraform_remote_state.network.outputs.private_subnet_ids
+  private_subnet_ids = data.terraform_remote_state.network.outputs.private_subnet_ids
 
-allowed_security_group_ids = [
+  allowed_security_group_ids = [
     data.terraform_remote_state.network.outputs.eks_cluster_sg_id,
     data.terraform_remote_state.network.outputs.eks_node_sg_id
-]
+  ]
   ###########################################################
   # KMS
   ###########################################################
@@ -85,10 +85,10 @@ allowed_security_group_ids = [
 
   monitoring_interval = var.monitoring_interval
 
-  performance_insights_enabled = var.performance_insights_enabled
+  performance_insights_enabled     = var.performance_insights_enabled
   cloudwatch_log_retention_in_days = var.cloudwatch_log_retention_in_days
-  create_cloudwatch_log_group = var.create_cloudwatch_log_group
-  monitoring_role_name = var.monitoring_role_name
+  create_cloudwatch_log_group      = var.create_cloudwatch_log_group
+  monitoring_role_name             = var.monitoring_role_name
 
 
   ###########################################################

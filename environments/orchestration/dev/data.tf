@@ -29,5 +29,5 @@ data "terraform_remote_state" "security" {
 
     region = "ap-south-1"
   }
-  
+
 }

@@ -71,7 +71,7 @@ variable "addons" {
 
   type = list(object({
 
-    name    = string
+    name = string
 
     version = string
   }))

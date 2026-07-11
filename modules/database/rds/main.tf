@@ -123,7 +123,7 @@ resource "aws_db_instance" "this" {
   ###########################################################
 
   iam_database_authentication_enabled = var.iam_database_authentication_enabled
-  
+
 
   ###########################################################
   # Misc

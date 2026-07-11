@@ -90,7 +90,7 @@ module "security_groups" {
   admin_access_cidr = var.admin_access_cidr
 
   common_tags = local.common_tags
-  vpc_cidr = var.vpc_cidr
+  vpc_cidr    = var.vpc_cidr
 }
 
 module "endpoints" {

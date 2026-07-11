@@ -41,5 +41,5 @@ private_subnets = [
   "10.0.12.0/24",
   "10.0.13.0/24"
 ]
-cluster_name = "dev-eks-cluster"
+cluster_name      = "dev-eks-cluster"
 admin_access_cidr = "0.0.0.0/0"

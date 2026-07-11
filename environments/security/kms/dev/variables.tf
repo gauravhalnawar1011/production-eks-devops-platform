@@ -4,7 +4,7 @@
 
 variable "aws_region" {
 
-  type    = string
+  type = string
 
   default = "ap-south-1"
 }
@@ -33,7 +33,7 @@ variable "project_name" {
 
 variable "managed_by" {
 
-  type    = string
+  type = string
 
   default = "Terraform"
 }

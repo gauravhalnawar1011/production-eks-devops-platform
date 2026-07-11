@@ -48,12 +48,12 @@ module "terraform_role" {
 
   policy_template_file = "../../../../modules/security/github-oidc/github-oidc-role/templates/terraform-policy.json"
 
-  backend_branch = var.backend_branch
+  backend_branch   = var.backend_branch
   terraform_branch = var.terraform_branch
-  frontend_branch = var.frontend_branch
+  frontend_branch  = var.frontend_branch
 
-github_branch = var.github_branch
-github_environment = var.github_environment
+  github_branch      = var.github_branch
+  github_environment = var.github_environment
 
 }
 
@@ -77,9 +77,9 @@ module "frontend_role" {
 
   policy_template_file = "../../../../modules/security/github-oidc/github-oidc-role/templates/frontend-policy.json"
 
-  backend_branch = var.backend_branch
+  backend_branch   = var.backend_branch
   terraform_branch = var.terraform_branch
-  frontend_branch = var.frontend_branch
+  frontend_branch  = var.frontend_branch
 
   github_branch = var.github_branch
 
@@ -95,7 +95,7 @@ module "backend_role" {
 
   source = "../../../../modules/security/github-oidc/github-oidc-role"
 
-  role_name =  "${var.project_name}-backend-role"
+  role_name   = "${var.project_name}-backend-role"
   policy_name = "backend-policy"
 
   github_owner = var.github_owner
@@ -108,11 +108,11 @@ module "backend_role" {
 
   common_tags = local.common_tags
 
-  backend_branch = var.backend_branch
+  backend_branch   = var.backend_branch
   terraform_branch = var.terraform_branch
-  frontend_branch = var.frontend_branch
+  frontend_branch  = var.frontend_branch
 
-github_branch = var.github_branch
+  github_branch = var.github_branch
 
-github_environment = var.github_environment
+  github_environment = var.github_environment
 }

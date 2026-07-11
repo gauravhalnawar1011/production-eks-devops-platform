@@ -41,31 +41,31 @@ variable "github_owner" {
 }
 
 variable "terraform_repository" {
-  
+
 }
 
 variable "frontend_repository" {
-  
+
 }
 
 variable "backend_repository" {
-  
+
 }
 
 variable "github_branch" {
-  
+
 }
 
 variable "terraform_branch" {
-  
+
 }
 
 variable "frontend_branch" {
-  
+
 }
 
 variable "backend_branch" {
-  
+
 }
 
 #############################################################

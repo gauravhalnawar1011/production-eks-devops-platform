@@ -15,14 +15,14 @@ variable "repository_name" {
 
 variable "image_tag_mutability" {
 
-  type    = string
+  type = string
 
   default = "IMMUTABLE"
 }
 
 variable "force_delete" {
 
-  type    = bool
+  type = bool
 
   default = false
 }
