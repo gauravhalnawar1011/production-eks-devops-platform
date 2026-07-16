@@ -140,7 +140,7 @@ variable "port" {
 variable "publicly_accessible" {
   description = "Public accessibility."
   type        = bool
-  default     = false
+  default     = true
 }
 
 #############################################################

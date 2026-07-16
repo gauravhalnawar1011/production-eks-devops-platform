@@ -9,3 +9,70 @@ then create ssl tls certs for the cdn to server the traffic
 then create the 
 /home/gaurav-h/exlearn/final-project-exleran/production-eks-devops-platform/environments/frontend/dev
 
+
+
+EKS Cluster
+      │
+      ▼
+OIDC
+      │
+      ▼
+IRSA
+      │
+      ▼
+Kubernetes Service Account
+      │
+      ▼
+Helm Chart / Deployment
+
+
+
+
+
+
+
+
+
+Network
+   │
+   ▼
+KMS
+   │
+   ▼
+ECR
+   │
+   ▼
+DNS
+   │
+   ▼
+ACM
+   │
+   ▼
+EKS
+   │
+   ▼
+OIDC
+   │
+   ▼
+EBS CSI Driver
+   │
+   ▼
+ALB Controller
+   │
+   ▼
+Admin Host
+   │
+   ▼
+EKS Access   ← (new module)
+   │
+   ▼
+IRSA
+   │
+   ▼
+Kubernetes Service Accounts
+   │
+   ▼
+Secrets Manager
+   │
+   ▼
+Applications

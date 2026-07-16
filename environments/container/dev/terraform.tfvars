@@ -14,7 +14,7 @@ project_name = "production-eks-platform"
 # ECR
 #################################################
 
-repository_name = "dev-netflix-clone"
+repository_name = "space9-python-backend"
 
 image_tag_mutability = "IMMUTABLE"
 
