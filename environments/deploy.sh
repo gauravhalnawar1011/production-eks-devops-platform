@@ -1,4 +1,4 @@
-\#!/bin/bash
+#!/bin/bash
 
 set -euo pipefail
 
@@ -31,7 +31,7 @@ EBS_CSI="orchestration/ebs-csi-driver/dev"
 ALB_CONTROLLER="orchestration/alb-controller/dev"
 EKS_ACCESS="orchestration/eks-access/dev"
 IRSA="orchestration/irsa/dev"
-SERVICE_ACCOUNT="orchestration/kubernetes-service-account/dev"
+#SERVICE_ACCOUNT="orchestration/kubernetes-service-account/dev"  #Excute this afte the ns create in cluster 
 
 # Database
 RDS="database/rds/dev"
@@ -98,7 +98,7 @@ apply() {
 
     run_module apply "$IRSA"
 
-    run_module apply "$SERVICE_ACCOUNT"
+    # run_module apply "$SERVICE_ACCOUNT"
 
     run_module apply "$WEB_DEV"
 
@@ -116,7 +116,7 @@ destroy() {
 
     run_module destroy "$WEB_DEV"
 
-    run_module destroy "$SERVICE_ACCOUNT"
+    # run_module destroy "$SERVICE_ACCOUNT"
 
     run_module destroy "$IRSA"
 

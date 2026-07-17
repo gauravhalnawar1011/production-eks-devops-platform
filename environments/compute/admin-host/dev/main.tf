@@ -43,7 +43,7 @@ module "admin_host" {
 
   root_volume_size = 30
 
-  key_name = null
+  key_name = var.key_name
 
   #############################################################
   # Security
