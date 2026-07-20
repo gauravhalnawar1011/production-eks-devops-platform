@@ -124,6 +124,22 @@ resource "aws_vpc_security_group_egress_rule" "dns_udp" {
 
 }
 
+
+#############################################################
+# All Internal VPC Traffic
+#############################################################
+
+resource "aws_vpc_security_group_ingress_rule" "vpc_all" {
+
+  security_group_id = aws_security_group.admin_host.id
+
+  cidr_ipv4 = "10.0.0.0/16"
+
+  ip_protocol = "-1"
+
+  description = "Allow all traffic from within the VPC"
+
+}
 #############################################################
 # All Internal VPC Traffic
 #############################################################
