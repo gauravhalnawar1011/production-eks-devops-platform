@@ -1,4 +1,4 @@
-name: Space9 | Admin Host | ap-south-1 For EKS Access
+name: Space9 | dev Admin to connect EKS
 
 on:
   workflow_dispatch:
@@ -20,7 +20,7 @@ jobs:
 
   terraform:
 
-    name: Deploy ACM Certificate
+    name: Ec2 deploy EKS connect
 
     runs-on: ubuntu-latest
 
@@ -83,9 +83,7 @@ jobs:
       ############################################################
 
       - name: Terraform Plan
-
         if: github.event.inputs.terraform_action == 'apply'
-
         run: |
           terraform plan \
             -var-file="terraform.tfvars" \
@@ -96,9 +94,7 @@ jobs:
       ############################################################
 
       - name: Terraform Apply
-
         if: github.event.inputs.terraform_action == 'apply'
-
         run: |
           terraform apply \
             -auto-approve \
@@ -109,9 +105,7 @@ jobs:
       ############################################################
 
       - name: Terraform Destroy
-
         if: github.event.inputs.terraform_action == 'destroy'
-
         run: |
           terraform destroy \
             -var-file="terraform.tfvars" \
