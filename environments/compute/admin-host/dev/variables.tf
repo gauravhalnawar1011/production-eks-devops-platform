@@ -17,17 +17,17 @@ variable "project_name" {
 }
 
 variable "key_name" {
-  
+
 }
 
 variable "instance_type" {
-  
+
 }
 
 variable "root_volume_size" {
-  
+
 }
 
 variable "allowed_ssh_cidr" {
-  
+
 }
