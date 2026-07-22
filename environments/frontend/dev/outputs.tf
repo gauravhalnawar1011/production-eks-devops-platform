@@ -1,17 +1,19 @@
 output "bucket_name" {
+  description = "Frontend S3 bucket name"
+  value       = module.frontend_bucket.bucket_name
+}
 
-  value = module.frontend_bucket.bucket_name
-
+output "cloudfront_distribution_id" {
+  description = "CloudFront Distribution ID"
+  value       = module.cloudfront.distribution_id
 }
 
 output "cloudfront_domain" {
-
-  value = module.cloudfront.distribution_domain_name
-
+  description = "CloudFront domain name"
+  value       = module.cloudfront.distribution_domain_name
 }
 
 output "frontend_url" {
-
-  value = "https://${var.frontend_domain}"
-
+  description = "Frontend custom domain"
+  value       = "https://${var.frontend_domain}"
 }

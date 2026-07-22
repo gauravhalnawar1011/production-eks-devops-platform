@@ -8,7 +8,7 @@ data "terraform_remote_state" "network" {
 
   config = {
 
-    bucket = "gaurav-prod-teeraform-state-bucket-074095961179"
+    bucket = "space9-remote-state-239713807106"
 
     key = "infra/network/dev/terraform.tfstate"
 
@@ -28,7 +28,7 @@ data "terraform_remote_state" "kms" {
   backend = "s3"
 
   config = {
-    bucket = "gaurav-prod-teeraform-state-bucket-074095961179"
+    bucket = "space9-remote-state-239713807106"
 
     key = "infra/security/kms/dev/terraform.tfstate"
 

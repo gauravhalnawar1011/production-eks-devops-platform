@@ -8,7 +8,7 @@ data "terraform_remote_state" "orchestration" {
 
   config = {
 
-    bucket = "gaurav-prod-teeraform-state-bucket-074095961179"
+    bucket = "space9-remote-state-239713807106"
 
     key = "orchestration/eks/dev/terraform.tfstate"
 
@@ -28,7 +28,7 @@ data "terraform_remote_state" "admin_host" {
 
   config = {
 
-    bucket = "gaurav-prod-teeraform-state-bucket-074095961179"
+    bucket = "space9-remote-state-239713807106"
 
     key = "infra/compute/ec2/dev/terraform.tfstate"
 

@@ -12,7 +12,7 @@ data "terraform_remote_state" "dns" {
 
   config = {
 
-    bucket = "gaurav-prod-teeraform-state-bucket-074095961179"
+    bucket = "space9-remote-state-239713807106"
 
     key = "dns/global/hostedzone/terraform.tfstate"
 
@@ -30,7 +30,7 @@ data "terraform_remote_state" "acm_global" {
 
   config = {
 
-    bucket = "gaurav-prod-teeraform-state-bucket-074095961179"
+    bucket = "space9-remote-state-239713807106"
 
     key = "frontend/acm/global/ssl_tls_cert/terraform.tfstate"
 

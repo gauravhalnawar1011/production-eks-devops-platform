@@ -4,7 +4,7 @@ environment = "dev"
 
 project_name = "production-eks-platform"
 
-secret_name = "/production-eks-platform/dev/rds/postgres-secret"
+secret_name = "/production-eks-platform/dev/rds/postgres-secret-v2"
 
 description = "PostgreSQL credentials"
 
