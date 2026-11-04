@@ -8,7 +8,7 @@ data "terraform_remote_state" "orchestration" {
 
   config = {
 
-    bucket = "space9-remote-state-239713807106"
+    bucket = "terraform-remote-backend-july-batch-fctp-v5"
 
     key = "orchestration/eks/dev/terraform.tfstate"
 
@@ -28,7 +28,7 @@ data "terraform_remote_state" "admin_host" {
 
   config = {
 
-    bucket = "space9-remote-state-239713807106"
+    bucket = "terraform-remote-backend-july-batch-fctp-v5"
 
     key = "infra/compute/ec2/dev/terraform.tfstate"
 

@@ -4,7 +4,7 @@ data "terraform_remote_state" "kms" {
 
   config = {
 
-    bucket = "space9-remote-state-239713807106"
+    bucket = "terraform-remote-backend-july-batch-fctp-v5"
 
     key = "infra/security/kms/dev/terraform.tfstate"
 

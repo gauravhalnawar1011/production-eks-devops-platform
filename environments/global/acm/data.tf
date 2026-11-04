@@ -8,7 +8,7 @@ data "terraform_remote_state" "dns" {
 
   config = {
 
-    bucket = "space9-remote-state-239713807106"
+    bucket = "terraform-remote-backend-july-batch-fctp-v5"
 
     key = "dns/global/hostedzone/terraform.tfstate"
 

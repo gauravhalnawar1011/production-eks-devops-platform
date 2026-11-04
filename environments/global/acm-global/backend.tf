@@ -2,7 +2,7 @@ terraform {
 
   backend "s3" {
 
-    bucket = "space9-remote-state-239713807106"
+    bucket = "terraform-remote-backend-july-batch-fctp-v5"
 
     key = "frontend/acm/global/ssl_tls_cert/terraform.tfstate"
 
