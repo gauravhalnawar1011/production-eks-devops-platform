@@ -4,7 +4,7 @@ environment = "dev"
 
 project_name = "production-eks-devops-platform"
 
-bucket_name = "production-dev-frontend"
+bucket_name = "production-dev-frontend-fctp-july"
 
 frontend_domain = "dev.space9.in"
 
